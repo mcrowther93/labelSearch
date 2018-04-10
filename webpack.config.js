@@ -18,11 +18,17 @@ const config = {
                 use: {
                     loader: "babel-loader"
                 }
+            },
+            {
+                test: /\.css$/,
+                use: ["style-loader", "css-loader"]
             }]
     },
     plugins: [
         new HtmlWebpackPlugin({ template: './src/index.html' })
     ]
 };
+
+console.log(`Config outut `, config.output.path);
 
 module.exports = config;

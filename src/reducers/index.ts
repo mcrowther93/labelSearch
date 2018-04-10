@@ -1,11 +1,15 @@
 import { handleActions, handleAction } from 'redux-actions';
-import {COUNT_INCREMENT} from '../actions'
+import {COUNT_INCREMENT, COUNT_DECREMENT} from '../actions'
 import { combineReducers } from 'redux';
 
-const appReducer = handleAction(
-    COUNT_INCREMENT, (state, action) => ({
+const appReducer = handleActions({
+    [COUNT_INCREMENT]: (state, action) => ({
         counter: state.counter + 1
+    }),
+    [COUNT_DECREMENT]: (state, action) => ({
+        counter: state.counter - 1
     })
+}
   , { counter: 5 });
 
 

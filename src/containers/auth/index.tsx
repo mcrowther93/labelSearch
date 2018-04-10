@@ -2,7 +2,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { connect } from 'react-redux'
-import {incrementCounter} from '../../actions'
+import {incrementCounter, decrementCounter} from '../../actions'
 import {bindActionCreators} from 'redux'
 
 interface IAuthState {
@@ -10,6 +10,7 @@ interface IAuthState {
 
 interface IAuthProps {
     incrementCounter(): void;
+    decrementCounter(): void;
     name: number;
 
 }
@@ -23,20 +24,19 @@ class Auth extends React.Component<IAuthProps, IAuthState>{
 
 
     render(){
-        const {incrementCounter, name} = this.props;
+        const {decrementCounter, name, incrementCounter} = this.props;
         debugger;
         return(
-            <div onClick={incrementCounter}>
+            <div>
+            <div onClick={decrementCounter}> Decrease </div>
+            <div onClick={incrementCounter}> Increase </div>
+
                 {name}
-            </div>
+
+                </div>
         );
     }
 
-}
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-        incrementCounter,
-    }, dispatch);
 }
 
 function mapStateToProps(state) {
@@ -45,5 +45,6 @@ function mapStateToProps(state) {
     }
   }
 
-const App2 = connect(mapStateToProps, mapDispatchToProps)(Auth);
+const App2 = connect(mapStateToProps, {incrementCounter,decrementCounter})(Auth);
+
 export default App2;

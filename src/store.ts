@@ -1,9 +1,8 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
-
 import {reducers} from './reducers'
-import {watchIncrementAsync} from './sagas'
 
+import {watchAll} from './sagas/rootSaga'
 
 // create the saga middleware
 const sagaMiddleware = createSagaMiddleware()
@@ -16,8 +15,7 @@ const store = createStore(
 )
  
 // then run the saga
-
-sagaMiddleware.run(watchIncrementAsync)
+sagaMiddleware.run(watchAll)
 
 export default store;
  

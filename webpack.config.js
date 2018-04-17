@@ -1,6 +1,11 @@
 var path = require('path');
 var webpack = require('webpack');
 
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+
+const extractCSS = new ExtractTextPlugin({ filename: 'css.bundle.css' })
+
+
 module.exports = {
   entry: [
     // 'react-hot-loader/patch',
@@ -39,6 +44,13 @@ module.exports = {
         ],
         exclude: /node_modules/,
       },
+      {
+        test: /\.css$/,
+        loader: extractCSS.extract({ // Instance 1
+          fallback: 'style-loader',
+          use: [ 'css-loader' ],
+        })
+     },
     ],
   },
 
@@ -51,7 +63,7 @@ module.exports = {
 
     new webpack.NoEmitOnErrorsPlugin(),
     // do not emit compiled assets that include errors
-
+    extractCSS
 
   ],
 

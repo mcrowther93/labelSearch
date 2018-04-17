@@ -2,38 +2,53 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { connect } from 'react-redux'
-import {incrementCounter, decrementCounter} from '../../actions'
+import {setAuthInfo} from '../../actions/Authorisation'
 import {bindActionCreators} from 'redux'
+
+import getQueryParams from '../../utilites/StringToObject'
+
 
 interface IAuthState {
 }
 
 interface IAuthProps {
-    incrementCounter(): void;
-    decrementCounter(): void;
-    name: number;
-
+    setAuthInfo(params): void;
+    history: any
 }
 
 
 class Auth extends React.Component<IAuthProps, IAuthState>{
 
+    private spotifyAuth = 'https://accounts.spotify.com/authorize?' + 
+   'client_id=b26546b8389b4256b77be170b06bff52&' + 
+    'redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth&' + 
+    'scope=user-read-private%20user-read-email%20user-modify-playback-state%20streaming&' + 
+    'response_type=token&' + 
+    'state=123';
+
     constructor(props, state){
         super(props, state);
     }
 
+    componentDidMount() {
+
+        if(self.window.location.href.includes('access_token')){
+            const params = getQueryParams(self.window.location.hash);
+            this.props.setAuthInfo(params);
+            this.props.history.push('/');
+        }
+        else{
+            // ask user to reauthenticate.
+            self.window.location.href = this.spotifyAuth;
+        }
+    }
+
 
     render(){
-        const {decrementCounter, name, incrementCounter} = this.props;
-        debugger;
         return(
             <div>
-            <div onClick={decrementCounter}> Decrease </div>
-            <div onClick={incrementCounter}> Increase </div>
-
-                {name}
-
-                </div>
+                No Authorisated if not redirected please click <div> here </div>
+            </div>
         );
     }
 
@@ -41,10 +56,10 @@ class Auth extends React.Component<IAuthProps, IAuthState>{
 
 function mapStateToProps(state) {
     return {
-      name: state.appReducer.counter
+      name: state.authorisation
     }
   }
 
-const App2 = connect(mapStateToProps, {incrementCounter,decrementCounter})(Auth);
+const App2 = connect(null, {setAuthInfo})(Auth);
 
 export default App2;

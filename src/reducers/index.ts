@@ -1,20 +1,13 @@
-import { handleActions, handleAction } from 'redux-actions';
-import {COUNT_INCREMENT, COUNT_DECREMENT} from '../actions'
+import { handleActions } from 'redux-actions';
 import { combineReducers } from 'redux';
-
-const appReducer = handleActions({
-    [COUNT_INCREMENT]: (state, action) => ({
-        counter: state.counter + 1
-    }),
-    [COUNT_DECREMENT]: (state, action) => ({
-        counter: state.counter - 1
-    })
-}
-  , { counter: 5 });
-
+import {authorisationReducer} from './Authorisation'
+import {searchReducer} from './Seach'
+import {recordLabelReducer} from './RecordLabel'
 
   export const reducers = combineReducers({
-    appReducer
+    authorisation: authorisationReducer,
+    search: searchReducer,
+    recordLabels: recordLabelReducer
   })
 
 

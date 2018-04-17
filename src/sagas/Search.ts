@@ -77,7 +77,7 @@ function getFullAlbumDetails(accessToken, albumsIds: string[]) {
 function getArtistDetails(accessToken, artistIds: string[]) {
 
   let response = null;
-  return axios.get(`https://api.spotify.com/v1/artists/?ids=${albumsIds.join(",")}`, {
+  return axios.get(`https://api.spotify.com/v1/artists/?ids=${artistIds.join(",")}`, {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     }

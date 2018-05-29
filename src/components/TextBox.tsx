@@ -34,7 +34,8 @@ export class TextBox extends React.Component<IAuthProps, IAuthState>{
                 value={this.state.value}
                 onChange={this.handleChange}
                 placeholder={this.props.placeholder}
-                style={this.props.style}
+                style={{...this.props.style,   boxSizing: 'border-box',
+                    padding: '0 20px'}}
             />
         )
 

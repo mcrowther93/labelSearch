@@ -48,9 +48,17 @@ module.exports = {
         test: /\.css$/,
         loader: extractCSS.extract({ // Instance 1
           fallback: 'style-loader',
-          use: [ 'css-loader' ],
+          use: ['css-loader'],
         })
-     },
+      },
+      {
+        test: /\.svg$/, use: {
+          loader: 'svg-url-loader',
+          options: {}
+        }
+      }
+
+
     ],
   },
 

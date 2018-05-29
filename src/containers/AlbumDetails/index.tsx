@@ -36,7 +36,6 @@ class AlbumDetails extends React.Component<IAuthProps, IAuthState>{
         const indexOf = pathname.lastIndexOf("/")
         const id = pathname.substring(indexOf+1);
 
-        debugger;
         const album = this.props.albums.filter(album => album.id === id)[0]
         console.log(`Redirected to ${id} found album in state`, album);
         

@@ -2,6 +2,8 @@ import { takeEvery, put, call, take, select, takeLatest } from 'redux-saga/effec
 import { COUNT_DECREMENT } from '../actions'
 import { SEARCH_FAILED, searchSuccess, BEGIN_SEARCH, beginSearch } from '../actions/Search'
 import { addRecordLabel } from '../actions/RecordsLabels'
+import Axios from 'axios';
+import ApiAction from '../utilites/apiActions';
 
 import axios from 'axios'
 import * as _ from 'lodash'
@@ -17,8 +19,11 @@ export function* search() {
   let bStop = true;
   let nextUrl = null;
 
+
+  const apiActions = new ApiAction();
+
   do {
-    const response = yield call(searchLabel, accessToken, searchTerm, nextUrl);
+    const response: any = yield apiActions.searchLabel(searchTerm, nextUrl);
     dto.push(...response.data.albums.items)
     nextUrl = response.data.albums.next
     const trackIds = response.data.albums.items.map(track => track.id);
@@ -56,7 +61,6 @@ export function* search() {
   const recordLabels = _.uniqBy(albumDetails, 'label').map(ad => ad.label);
   const uniqueIds = _.uniq(allArtistIds);
 
-debugger;
 
   yield put(addRecordLabel(recordLabels));
   yield put(searchSuccess(albumDetails));
@@ -80,19 +84,6 @@ function getArtistDetails(accessToken, artistIds: string[]) {
   return axios.get(`https://api.spotify.com/v1/artists/?ids=${artistIds.join(",")}`, {
     headers: {
       Authorization: `Bearer ${accessToken}`,
-    }
-  })
-
-}
-
-function searchLabel(accessToken, searchTerm, url) {
-
-  let response = null;
-  const finalUrl = url ? url : `https://api.spotify.com/v1/search?q=label:"${encodeURIComponent(searchTerm)}"&type=Album&offset=0&limit=20&next`
-
-  return axios.get(finalUrl, {
-    headers: {
-      Authorization: `Bearer ${accessToken}`
     }
   })
 

@@ -6,12 +6,13 @@ import store from './store'
 import Auth2 from './containers/auth'
 import Home from './containers/home'
 import AlbumDetails from './containers/AlbumDetails'
-
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
+import './styles/main.css'
 
 
-const App = () => <Provider  store={store}>
+const App = () => 
+  <Provider  store={store}>
 <BrowserRouter  >
   <Switch  >
     <Route exact path="/" component={Home} />
@@ -21,6 +22,7 @@ const App = () => <Provider  store={store}>
 
 
 </BrowserRouter>
-</Provider>;
+</Provider>
+;
 
-ReactDOM.render(<App />, document.getElementById("app"));
+ReactDOM.render(<div className={'background'}><App /></div>, document.getElementById("app"));

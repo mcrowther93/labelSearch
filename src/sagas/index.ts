@@ -35,6 +35,7 @@ export function* setAuth() {
 
   spotifyPlayer.setSDK(sdk);
 
+
 }
 
 

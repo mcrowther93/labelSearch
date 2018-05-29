@@ -37,7 +37,6 @@ class SpotifyPlayer {
     }
 
      pause =  () => {
-         debugger;
         this.sdk.pause();
     }
     

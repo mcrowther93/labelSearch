@@ -1,0 +1,11 @@
+body {
+    background: url('./background.svg')  no-repeat top left;
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: unset;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-attachment: fixed;
+
+}

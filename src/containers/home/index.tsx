@@ -10,8 +10,9 @@ import './style.css'
 import { TextBox } from '../../components/TextBox'
 import AlbumDetails from '../AlbumDetails'
 import SearchResultsContainer from '../SearchResults'
+import WebPlayer from '../WebPlayer';
 
-import spotifyPlayer from '../../utilites/player';
+
 
 
 import * as _ from 'lodash'
@@ -84,11 +85,6 @@ class Home_ extends React.Component<IAuthProps, IAuthState>{
         </TextBox></div>)
     }
 
-    listeningTo(){
-        spotifyPlayer.isCurrentlyListeningTo();
-    }
-
-
     render() {
         const { user, results } = this.props;
         return (
@@ -98,11 +94,7 @@ class Home_ extends React.Component<IAuthProps, IAuthState>{
                         <div>
                             <div>
                                 {this.renderSearch()}
-                                <br />
-                                <button onClick={this.listeningTo} > Listening TO </button>
-                                <button onClick={spotifyPlayer.pause} > Pause</button>
-                                <button onClick={spotifyPlayer.previousSong} > Previous</button>
-                                <button onClick={spotifyPlayer.nextSong} > Next</button>
+       
 
 
                             </div>
@@ -110,7 +102,11 @@ class Home_ extends React.Component<IAuthProps, IAuthState>{
                                 {<SearchResultsContainer 
                                 navigateToAbum={this.navigateToAlbum}
                                 searchResults={this.props.results} 
-                                />} </div>
+                                />} 
+                            </div>
+                            <div className={'webPlayerWrapper'}>
+                                    <WebPlayer />
+                            </div>
                         </div>
                 }
             </div>

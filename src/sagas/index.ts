@@ -14,7 +14,7 @@ export function* setAuth() {
   const {Player} = yield waitForSpotifyWebPlaybackSDKToLoad();
   console.log("The Web Playback SDK has loaded.", Player);
   const sdk  = new Player({
-    name: "Web Playback SDK",
+    name: "Spotify Label Search",
     volume: 1.0,
     getOAuthToken: callback => { callback(authorisation.accessToken); }
   });

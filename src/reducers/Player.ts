@@ -6,10 +6,10 @@ song: null,
 isPlaying: false
 } as IPlayer;
 
-export const searchReducer = handleActions({
+export const playerReducer = handleActions({
     [PLAY_SONG]: (state: IPlayer, {payload}) => ({
         ...state,
         isPlaying: true,
         song: payload
     })
-});
+},inititalState);

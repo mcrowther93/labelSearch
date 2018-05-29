@@ -1,4 +1,5 @@
 import apiActions from './apiActions';
+import {} from '../store'
 
 class SpotifyPlayer {
 
@@ -14,7 +15,7 @@ class SpotifyPlayer {
               console.log(`Song changed payload:`, payload)
           });
     }
-
+    
     async isCurrentlyListeningTo() {
         let state = await this.sdk.getCurrentState();
         if (state == null) {

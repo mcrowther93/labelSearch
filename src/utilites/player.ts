@@ -1,12 +1,26 @@
+import apiActions from './apiActions';
+
 class SpotifyPlayer {
 
     private sdk;
 
     setSDK(sdk) {
         this.sdk = sdk;
+
+        this.sdk.on('playback_error', ({ message }) => {
+            console.error('Failed to perform playback', message);
+          });
+          this.sdk.addListener('player_state_changed', ({
+            position,
+            duration,
+            track_window: { current_track }
+          }) => {
+            console.log('Currently Playing', current_track);
+            console.log('Position in Song', position);
+            console.log('Duration of Song', duration);
+          });
     }
 
-    
     async isCurrentlyListeningTo() {
         let state = await this.sdk.getCurrentState();
         if (state == null) {
@@ -29,20 +43,26 @@ class SpotifyPlayer {
     }
 
      pause =  () => {
-
-        debugger;
+         debugger;
         this.sdk.pause();
-
     }
     
     play =  () => {
-
-        debugger;
         this.sdk.resume();
-
     }
     
+    playSong = (trackId) => {
+        this.pause();
+        apiActions.playTrack(trackId);
+    } 
 
+    nextSong = () => {
+        this.sdk.nextTrack();
+    }
+
+    previousSong = () => {
+        this.sdk.previousTrack();
+    }
 
 }
 

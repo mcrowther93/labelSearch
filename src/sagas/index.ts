@@ -13,17 +13,25 @@ export function* setAuth() {
   // seperate this please.
   const {Player} = yield waitForSpotifyWebPlaybackSDKToLoad();
   console.log("The Web Playback SDK has loaded.", Player);
-  const sdk = new Player({
+  const sdk  = new Player({
     name: "Web Playback SDK",
     volume: 1.0,
     getOAuthToken: callback => { callback(authorisation.accessToken); }
   });
+
+  sdk.addListener('ready', ({ device_id }) => {
+    console.log('Ready with Device ID', device_id);
+    window.localStorage.setItem('deviceId', device_id)
+  });
+
 
   yield sdk.connect().then(connected => {
     if (connected) {
       console.log(`connected`);
     }
   });
+
+
 
   spotifyPlayer.setSDK(sdk);
 

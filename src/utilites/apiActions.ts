@@ -1,22 +1,14 @@
 import axios from 'axios'
 import { takeEvery, put, call, take, select, takeLatest } from 'redux-saga/effects'
 
-async function getAccessToken() {
-  const lol = await select((state: any) => state.authorisation);
-
-  return lol;
-}
-
 class ApiAction {
 
   private instance;
-  private accessToken;
   private static baseUrl = `https://api.spotify.com/v1/`;
 
   constructor() {
     this.instance = axios.create();
     this.instance.interceptors.request.use(this.requestInterceptor);
-    this.instance.interceptors.response.use(this.requestInterceptor);
   }
 
   requestInterceptor = (config) => {
@@ -26,14 +18,10 @@ class ApiAction {
     config.headers = {
       Authorization: `Bearer ${accessToken}`
     }
-
-
     return config;
   }
 
-  responseInterceptor = (response) => {
 
-  }
 
   searchLabel = async (searchTerm, url)=> {
 
@@ -42,6 +30,29 @@ class ApiAction {
     return await this.instance.get(finalUrl);
     
   }
+
+
+  getAlbums = async (albumsIds)=> {
+
+    if(albumsIds.length < 1){
+      return;
+    }
+
+    const url = `https://api.spotify.com/v1/albums/?ids=${albumsIds.join(",")}`;
+    return await this.instance.get(url);
+
+  }
+
+  playTrack = async (trackId) => {
+    const url = `https://api.spotify.com/v1/me/player/play?device_id=${window.localStorage.getItem('deviceId')}`;
+    return await this.instance.put(url, {
+      'context_uri': `spotify:album:${trackId}`,
+      'offset': {'position': 1}
+    });
+  }
+
 }
 
-export default ApiAction;
+
+const apiAction = new ApiAction();
+export default apiAction;

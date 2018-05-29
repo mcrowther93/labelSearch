@@ -44,7 +44,11 @@ class Home_ extends React.Component<IAuthProps, IAuthState>{
     componentDidMount() {
         if (this.props.user.accessToken) {
             console.log(`User profile`, this.props.user)
-            this.props.startSetUser();
+            
+            
+            if(!this.props.user._id)
+                this.props.startSetUser();
+                
         } else {
             this.props.history.push('/auth')
         }
@@ -97,7 +101,9 @@ class Home_ extends React.Component<IAuthProps, IAuthState>{
                                 <br />
                                 <button onClick={this.listeningTo} > Listening TO </button>
                                 <button onClick={spotifyPlayer.pause} > Pause</button>
-                                <button onClick={spotifyPlayer.play} > Play</button>
+                                <button onClick={spotifyPlayer.previousSong} > Previous</button>
+                                <button onClick={spotifyPlayer.nextSong} > Next</button>
+
 
                             </div>
                             <div style={{margin: '20px 0'}}>

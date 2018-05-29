@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { setAuthInfo } from '../../actions/Authorisation'
 import { bindActionCreators } from 'redux'
 import { SelectableItem } from '../../components/SelectableItem'
-
+import apiActions from './../../utilites/apiActions'
 import getQueryParams from '../../utilites/StringToObject'
 
 interface IAuthState {
@@ -27,6 +27,7 @@ export default class SearchResultsContainer extends React.Component<IAuthProps, 
 
     clickImage(albumId) {
         console.log(`Selected album ${albumId}`);
+        apiActions.playTrack(albumId);
         this.props.navigateToAbum(albumId);
 
     }
@@ -37,7 +38,6 @@ export default class SearchResultsContainer extends React.Component<IAuthProps, 
         if (searchResults && searchResults.length > 0) {
             searchResults.forEach((album, index) => {
                 const background =  album.images &&  album.images.url?  album.images.url : "";
-                debugger;
                 markup.push(<SelectableItem isSelected={this.clickImage} key={album.id} itemId={album.id}> 
                     <div style={{backgroundImage: `url(${background})`,
                     height: '300px',
@@ -58,7 +58,7 @@ export default class SearchResultsContainer extends React.Component<IAuthProps, 
                                 {album.label}
                             </div>
                             <div>
-                                <img  onClick={} src='../../styles/play.svg'/>
+                                <img src='../../styles/play.svg'/>
                             </div>
                         </div>
                     </div>

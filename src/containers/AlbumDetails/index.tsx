@@ -4,7 +4,6 @@ import * as ReactDOM from "react-dom";
 import { connect } from 'react-redux'
 import {setAuthInfo} from '../../actions/Authorisation'
 import {bindActionCreators} from 'redux'
-
 import getQueryParams from '../../utilites/StringToObject'
 
 

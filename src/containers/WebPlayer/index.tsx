@@ -17,11 +17,28 @@ export class Player extends React.Component<IAuthProps, IAuthState>{
         super(props, state);
     }
 
+
+    handleAction = () => {
+
+    }
+
     render() {
         return (
-         <div>
-             wooooaahhh.
-        </div>
+            <div>
+                <div>
+                    Song Info
+            </div>
+                <div>
+                    seeker
+            </div>
+                <div>
+                    Volume
+                </div>
+
+                <div>
+                    Play/Pause/Rewind/Forward
+                </div>
+            </div>
         )
 
     }

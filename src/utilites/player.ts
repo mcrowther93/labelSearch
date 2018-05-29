@@ -6,6 +6,11 @@ class SpotifyPlayer {
         this.sdk = sdk;
     }
 
+    // changeConnection(){
+    //     this.sdk.
+    // }
+
+
     
     async isCurrentlyListeningTo() {
         let state = await this.sdk.getCurrentState();
@@ -29,17 +34,11 @@ class SpotifyPlayer {
     }
 
      pause =  () => {
-
-        debugger;
         this.sdk.pause();
-
     }
     
     play =  () => {
-
-        debugger;
         this.sdk.resume();
-
     }
     
 

@@ -18,7 +18,6 @@ export const authorisationReducer = handleActions({
     [SET_USERS_USER]: (state: IAuthUser, {payload}) => ({
         ...state,
         name: 'n/a gdpr :)',
-        _id: payload.id,
         loadingProfile: false
     }),
     [START_SET_USERS_USER]: (state: IAuthUser, {payload}) => ({

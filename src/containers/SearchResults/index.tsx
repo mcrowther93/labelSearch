@@ -28,8 +28,6 @@ export default class SearchResultsContainer extends React.Component<IAuthProps, 
     clickImage(albumId) {
         console.log(`Selected album ${albumId}`);
         apiActions.playTrack(albumId);
-        this.props.navigateToAbum(albumId);
-
     }
 
     renderResults = () => {
@@ -56,9 +54,6 @@ export default class SearchResultsContainer extends React.Component<IAuthProps, 
                             </div>
                             <div>
                                 {album.label}
-                            </div>
-                            <div>
-                                <img src='../../styles/play.svg'/>
                             </div>
                         </div>
                     </div>

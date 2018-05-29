@@ -10,14 +10,8 @@ class SpotifyPlayer {
         this.sdk.on('playback_error', ({ message }) => {
             console.error('Failed to perform playback', message);
           });
-          this.sdk.addListener('player_state_changed', ({
-            position,
-            duration,
-            track_window: { current_track }
-          }) => {
-            console.log('Currently Playing', current_track);
-            console.log('Position in Song', position);
-            console.log('Duration of Song', duration);
+          this.sdk.addListener('player_state_changed', (payload) => {
+              console.log(`Song changed payload:`, payload)
           });
     }
 

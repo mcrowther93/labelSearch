@@ -8,6 +8,7 @@ class SpotifyPlayer {
     setSDK(sdk) {
         this.sdk = sdk;
 
+<<<<<<< HEAD
         this.sdk.on('playback_error', ({ message }) => {
             console.error('Failed to perform playback', message);
           });
@@ -15,6 +16,13 @@ class SpotifyPlayer {
               console.log(`Song changed payload:`, payload)
           });
     }
+=======
+    // changeConnection(){
+    //     this.sdk.
+    // }
+
+
+>>>>>>> 9c4848004bc77aeb1682ad8f93f74d2001787cf6
     
     async isCurrentlyListeningTo() {
         let state = await this.sdk.getCurrentState();

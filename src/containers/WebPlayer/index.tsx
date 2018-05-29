@@ -29,6 +29,7 @@ export class Player extends React.Component<IAuthProps, IAuthState>{
         const {player} = this.props;
 
         return (
+<<<<<<< HEAD
             <div className={'actionButtons'}>
                 <button onClick={spotifyPlayer.pause} > Pause</button>
                 <button onClick={spotifyPlayer.previousSong} > Previous</button>
@@ -36,6 +37,22 @@ export class Player extends React.Component<IAuthProps, IAuthState>{
 
                 {player && player.songName}
 
+=======
+            <div>
+                <div>
+                    Song Info
+            </div>
+                <div>
+                    seeker
+            </div>
+                <div>
+                    Volume
+                </div>
+
+                <div>
+                    Play/Pause/Rewind/Forward
+                </div>
+>>>>>>> 9c4848004bc77aeb1682ad8f93f74d2001787cf6
             </div>
         )
 

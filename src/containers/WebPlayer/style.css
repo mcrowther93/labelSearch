@@ -9,3 +9,12 @@
     color: white;
     outline: none;
 }
+
+.wrapper{
+    display: flex;
+    align-items: center;
+}
+
+.nowPlayingDetails{
+    font-size: 1.5rem;
+}

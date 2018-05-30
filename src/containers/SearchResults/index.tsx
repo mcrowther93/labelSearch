@@ -21,15 +21,11 @@ export default class SearchResultsContainer extends React.Component<IAuthProps, 
     constructor(props, state) {
         super(props, state);
         this.clickImage = this.clickImage.bind(this);
-        // this.onHover = this.onHover.bind(this);
     }
-
 
     clickImage(albumId) {
         console.log(`Selected album ${albumId}`);
         apiActions.playTrack(albumId);
-        this.props.navigateToAbum(albumId);
-
     }
 
     renderResults = () => {

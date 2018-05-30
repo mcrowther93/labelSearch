@@ -3,20 +3,25 @@ import { COUNT_DECREMENT } from '../actions'
 import { setUser, START_SET_USERS_USER, SET_USERS_USER } from '../actions/Authorisation'
 import axios from 'axios'
 import spotifyPlayer from '../utilites/player';
+import apiActions from './../utilites/apiActions';
 
 export function* setAuth() {
   const authorisation = yield select((state: any) => state.authorisation);
-  const response = yield call(callMeEndpoint, authorisation.accessToken);
+  const response = yield apiActions.callMeEndpoint();
   yield put({ type: SET_USERS_USER, payload: response.data });
 
+  yield setupSpotifyPlaybackSDK(authorisation.accessToken);
+}
 
+function* setupSpotifyPlaybackSDK(accessToken){
   // seperate this please.
   const {Player} = yield waitForSpotifyWebPlaybackSDKToLoad();
   console.log("The Web Playback SDK has loaded.", Player);
-  const sdk  = new Player({
-    name: "Spotify Label Search",
+  
+  const sdk = new Player({
+    name: "Label Search Connect",
     volume: 1.0,
-    getOAuthToken: callback => { callback(authorisation.accessToken); }
+    getOAuthToken: callback => { callback(accessToken); }
   });
 
   sdk.addListener('ready', ({ device_id }) => {
@@ -24,17 +29,13 @@ export function* setAuth() {
     window.localStorage.setItem('deviceId', device_id)
   });
 
-
   yield sdk.connect().then(connected => {
     if (connected) {
       console.log(`connected`);
     }
   });
 
-
-
   spotifyPlayer.setSDK(sdk);
-
 
 }
 

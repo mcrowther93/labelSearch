@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import spotifyPlayer from '../../utilites/player';
 import './style.css'
 
+import pauseIcon from '../../styles/pause.svg';
+
 interface IAuthState {
     isHovering: boolean;
 }
@@ -24,18 +26,29 @@ export class Player extends React.Component<IAuthProps, IAuthState>{
 
     }
 
+
+    renderSongDetails = (song) => {
+        return (
+            <div className={'nowPlayingDetails'}>
+                {song.artistName} - {song.currentSong}
+            </div>
+        )
+    }
+
     render() {
 
         const {player} = this.props;
 
         return (
-            <div className={'actionButtons'}>
-                <button onClick={spotifyPlayer.pause} > Pause</button>
-                <button onClick={spotifyPlayer.previousSong} > Previous</button>
-                <button onClick={spotifyPlayer.nextSong} > Next</button>
+            <div className={'wrapper'}>
+                <div className={'actionButtons'}>
+                    <button onClick={spotifyPlayer.pause} > Pause</button>
+                    <button onClick={spotifyPlayer.previousSong} > Previous</button>
+                    <button onClick={spotifyPlayer.nextSong} > Next</button>
 
-                {player && player.songName}
-
+                </div>
+                {player && player.song && this.renderSongDetails(player.song)}
+                
             </div>
         )
 

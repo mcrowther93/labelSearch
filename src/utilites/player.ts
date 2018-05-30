@@ -1,5 +1,7 @@
 import apiActions from './apiActions';
-import {} from '../store'
+import store from '../store'
+
+import {playSong, PLAY_SONG} from '../actions/Player';
 
 class SpotifyPlayer {
 
@@ -12,7 +14,10 @@ class SpotifyPlayer {
             console.error('Failed to perform playback', message);
           });
           this.sdk.addListener('player_state_changed', (payload) => {
-              console.log(`Song changed payload:`, payload)
+                console.log(`Song changed payload`)
+                store.dispatch(playSong(payload.track_window))
+
+
           });
     }
     

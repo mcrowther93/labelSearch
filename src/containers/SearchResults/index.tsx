@@ -29,12 +29,12 @@ export default class SearchResultsContainer extends React.Component<IAuthProps, 
     }
 
     renderResults = () => {
-        let markup = [];
+        let searchResultsContainer = [];
         const { searchResults } = this.props;
         if (searchResults && searchResults.length > 0) {
             searchResults.forEach((album, index) => {
                 const background =  album.images &&  album.images.url?  album.images.url : "";
-                markup.push(<SelectableItem isSelected={this.clickImage} key={album.id} itemId={album.id}> 
+                searchResultsContainer.push(<SelectableItem isSelected={this.clickImage} key={album.id} itemId={album.id}> 
                     <div style={{backgroundImage: `url(${background})`,
                     height: '300px',
                     width: '300px',
@@ -62,7 +62,7 @@ export default class SearchResultsContainer extends React.Component<IAuthProps, 
             })
         }
 
-        return markup;
+        return searchResultsContainer;
     }
 
     render() {

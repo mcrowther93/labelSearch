@@ -98,7 +98,7 @@ class Home_ extends React.Component<IAuthProps, IAuthState>{
 
 
                             </div>
-                            <div style={{margin: '20px 0'}}>
+                            <div style={{margin: '10px 20px'}}>
                                 {<SearchResultsContainer 
                                 navigateToAbum={this.navigateToAlbum}
                                 searchResults={this.props.results} 

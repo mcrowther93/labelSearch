@@ -2,7 +2,8 @@ import { createAction } from 'redux-actions';
 
 export interface IPlayer {
     song: any,
-    isPlaying: boolean
+    isPlaying: boolean,
+    isPaused: boolean
 }
 
 export const PLAY_SONG: string = 'PlaySong';

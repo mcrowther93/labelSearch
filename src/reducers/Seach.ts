@@ -1,11 +1,13 @@
 import { handleActions, handleAction } from 'redux-actions';
 import {BEGIN_SEARCH, SEARCH_FAILED, SEARCH_SUCCESS, ISearch} from '../actions/Search'
+import * as _ from 'lodash'
 
 const inititalState = {
   isSearching: false,
   results: [],
   searchTerm: '',
-  errorMessage: ''
+  errorMessage: '',
+  recordLabel:[]
 } as ISearch;
 
 export const searchReducer = handleActions({
@@ -22,6 +24,33 @@ export const searchReducer = handleActions({
     [SEARCH_SUCCESS]: (state: ISearch, {payload}) => ({
         ...state,
         isSearching: false,
-        results: payload
+        results: payload,
+        recordLabel: uniuqeRecordLabel(payload)
     }),
 }, inititalState)
+
+
+const uniuqeRecordLabel = (albums) => {
+    return _.uniqBy(albums, (album) => album.label).map(ad => ad.label);
+}
+
+
+const groupByRecordLabel = (albums) => {
+
+    const groupedAlbum = albums.reduce((groupByRecordLabel, album) => {
+
+        const recordLabel = album.label;
+
+        if(groupByRecordLabel[recordLabel] === undefined){
+        groupByRecordLabel[recordLabel] = [];
+        }
+
+        groupByRecordLabel[recordLabel].push(album);
+
+        return groupByRecordLabel;
+
+    }, {})
+
+
+    return groupedAlbum;
+}

@@ -34,6 +34,34 @@
 position: fixed;
 width: 100%;
 bottom: 0;
+left: 0;
 background-color: rgba(1, 1, 1, 0.75);
 padding: 10px 20px;
 }
+
+
+.ablum-organise{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.ablum-organise > div{
+  flex: 45%;
+}
+
+.album-filter-wrapper{
+  color: grey;
+  padding: 10px 20px;
+}
+
+
+
+.album-sort-wrapper{
+  padding: 10px 20px;  
+  color: grey;
+
+}
+
+

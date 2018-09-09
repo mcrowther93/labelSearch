@@ -11,14 +11,14 @@ class SpotifyPlayer {
         this.sdk = sdk;
 
         this.sdk.on('playback_error', ({ message }) => {
-            console.error('Failed to perform playback', message);
-          });
-          this.sdk.addListener('player_state_changed', (payload) => {
-                console.log(`Song changed payload`)
-                store.dispatch(playSong(payload.track_window))
+        console.error('Failed to perform playback', message);
+        });
 
+        this.sdk.addListener('player_state_changed', (payload) => {
+            console.log(`Song changed payload`)
+            store.dispatch(playSong(payload))
+        });
 
-          });
     }
     
     async isCurrentlyListeningTo() {
@@ -42,12 +42,12 @@ class SpotifyPlayer {
         }
     }
 
-     pause =  () => {
-        this.sdk.pause();
+    pause =  () => {
+        this.sdk.togglePlay();
     }
     
     play =  () => {
-        this.sdk.resume();
+        this.sdk.togglePlay();
     }
     
     playSong = (trackId) => {

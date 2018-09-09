@@ -13,14 +13,16 @@ interface INowPLaying  {
 
 const inititalState = {
 song: null as INowPLaying,
-isPlaying: false
+isPlaying: false,
+isPaused: false
 } as IPlayer;
 
 export const playerReducer = handleActions({
     [PLAY_SONG]: (state: IPlayer, {payload}) => ({
         ...state,
         isPlaying: true,
-        song: transformIntoSong(payload)
+        isPaused: payload.paused,
+        song: transformIntoSong(payload.track_window)
     })
 },inititalState);
 

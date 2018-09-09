@@ -30,7 +30,8 @@ export class Player extends React.Component<IAuthProps, IAuthState>{
     renderSongDetails = (song) => {
         return (
             <div className={'nowPlayingDetails'}>
-                {song.artistName} - {song.currentSong}
+                <div>{song.currentSong}</div>
+                <div>{song.artistName}</div>
             </div>
         )
     }
@@ -42,9 +43,9 @@ export class Player extends React.Component<IAuthProps, IAuthState>{
         return (
             <div className={'wrapper'}>
                 <div className={'actionButtons'}>
-                    <button onClick={spotifyPlayer.pause} > Pause</button>
-                    <button onClick={spotifyPlayer.previousSong} > Previous</button>
-                    <button onClick={spotifyPlayer.nextSong} > Next</button>
+                    <button className={'webplayer-previous'} onClick={spotifyPlayer.previousSong} > </button>
+                    <button className={player.isPaused ? 'webplayer-play' : 'webplayer-pause'} onClick={spotifyPlayer.pause} ></button>
+                    <button className={'webplayer-next'} onClick={spotifyPlayer.nextSong} ></button>
 
                 </div>
                 {player && player.song && this.renderSongDetails(player.song)}

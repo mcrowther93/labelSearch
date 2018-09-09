@@ -1,0 +1,17 @@
+.pagination-steps button{
+    padding: 10px;
+    border: none;
+}
+
+.pagination-steps button:focus{
+    outline: 0;
+}
+
+.pagination-previous::before{
+    content: "\25C0"
+}
+
+
+.pagination-next::after{
+    content: "\25b6"
+}

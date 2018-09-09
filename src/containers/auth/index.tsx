@@ -32,6 +32,7 @@ class Auth extends React.Component<IAuthProps, IAuthState>{
 
     componentDidMount() {
 
+        // this is bad -- move into saga....
         if(self.window.location.href.includes('access_token')){
             const params: any = getQueryParams(self.window.location.hash);
             const accessToken = params.access_token;

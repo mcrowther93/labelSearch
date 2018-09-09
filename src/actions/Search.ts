@@ -4,7 +4,8 @@ import { createAction } from 'redux-actions';
 export interface ISearch {
     searchTerm: string,
     isSearching: boolean,
-    results: any[]
+    results: any[],
+    recordLabel: string[]
 }
 
 export const BEGIN_SEARCH: string = 'Search/BeginSearch';

@@ -44,7 +44,9 @@ export class Player extends React.Component<IAuthProps, IAuthState>{
             <div className={'wrapper'}>
                 <div className={'actionButtons'}>
                     <button className={'webplayer-previous'} onClick={spotifyPlayer.previousSong} > </button>
-                    <button className={player.isPaused ? 'webplayer-play' : 'webplayer-pause'} onClick={spotifyPlayer.pause} ></button>
+                    <div className={'play-wrapepr'}>
+                        <button className={player.isPaused ? 'webplayer-play' : 'webplayer-pause'} onClick={spotifyPlayer.pause} ></button>
+                    </div>
                     <button className={'webplayer-next'} onClick={spotifyPlayer.nextSong} ></button>
 
                 </div>

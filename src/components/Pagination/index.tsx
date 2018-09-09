@@ -30,9 +30,6 @@ export default class Pagination extends React.Component<IAuthProps, IAuthState>{
         this.state = ({
             currentStep: 0
         })
-
-        const options = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
     }
 
 

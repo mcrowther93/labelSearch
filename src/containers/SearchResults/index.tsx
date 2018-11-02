@@ -38,7 +38,6 @@ export default class SearchResultsContainer extends React.Component<IAuthProps, 
     clickImage = (albumId) => {
         console.log(`Selected album ${albumId}`);
         apiActions.playTrack(albumId);
-<<<<<<< HEAD
     }
 
     nextSteps = (step) => {
@@ -97,40 +96,6 @@ export default class SearchResultsContainer extends React.Component<IAuthProps, 
                         )
                     })}
                 </div>
-=======
-    }
-
-    renderResults = () => {
-        let markup = [];
-        const { searchResults } = this.props;
-        if (searchResults && searchResults.length > 0) {
-            searchResults.forEach((album, index) => {
-                const background =  album.images &&  album.images.url?  album.images.url : "";
-                markup.push(<SelectableItem isSelected={this.clickImage} key={album.id} itemId={album.id}> 
-                    <div style={{backgroundImage: `url(${background})`,
-                    height: '300px',
-                    width: '300px',
-                    display: 'flex',
-                    marginBottom: '2rem',
-                    backgroundRepeat: 'no-repeat',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderRadius: '50%',
-                    overflow: 'hidden'}}>
-
-                        <div style={{    width: '100%', background: 'rgba(35, 35, 35, 0.7)' }}>
-                            <div style={{ fontSize: '1.5rem', color: '#f15d00' }}>
-                                {album.name}
-                            </div>
-                            <div>
-                                {album.label}
-                            </div>
-                        </div>
-                    </div>
-                </SelectableItem>)
-            })
-        }
->>>>>>> master
 
             </Pagination>
         )

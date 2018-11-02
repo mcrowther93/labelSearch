@@ -1,20 +1,19 @@
 
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import { connect } from 'react-redux'
 import { startSetUser, IAuthUser } from '../../actions/Authorisation'
-import { beginSearch, ISearch } from '../../actions/Search'
+import { beginSearch } from '../../actions/Search'
+import { viewDevices, IDevice } from '../../actions/Devices'
 
-import { bindActionCreators } from 'redux'
-import './style.css'
 import { TextBox } from '../../components/TextBox'
-import AlbumDetails from '../AlbumDetails'
 import SearchResultsContainer from '../SearchResults'
 import WebPlayer from '../WebPlayer';
 import { MultiSelect } from '../../components/MultiSelect';
 
+import './style.css'
+
 import * as _ from 'lodash'
-import { SelectableItem } from "../../components/SelectableItem";
+import StickyHeader from "../StickyHeader";
 
 interface IAuthState {
     firstLoad: boolean;
@@ -27,10 +26,12 @@ interface IAuthProps {
     user: IAuthUser;
     startSetUser(): void;
     beginSearch(value): void;
+    viewDevices(): void
     history: any;
     results: any[];
     recordLabels: string[];
     player: any;
+    devices: IDevice
 }
 
 class Home_ extends React.Component<IAuthProps, IAuthState>{
@@ -54,8 +55,12 @@ class Home_ extends React.Component<IAuthProps, IAuthState>{
             console.log(`User profile`, this.props.user)
 
 
-            if (!this.props.user._id)
+            if (!this.props.user._id){}
                 this.props.startSetUser();
+
+
+        this.props.viewDevices()
+
 
         } else {
             this.props.history.push('/auth')
@@ -92,6 +97,7 @@ class Home_ extends React.Component<IAuthProps, IAuthState>{
         this.setState({ sortBy: sortBy[0] });
 
     }
+
  
 
     renderFilter = () => {
@@ -152,9 +158,10 @@ class Home_ extends React.Component<IAuthProps, IAuthState>{
         const sortedAlbums = this.sortAlbums(filteredAlbums)
         return (
             <div>
+                <StickyHeader />
                 {
                     user.loadingProfile ? 'Loading Profile' :
-                        <div>
+                        <div className={'app-wrapper'}>
                             <div>
                                 {this.renderSearch()}
 
@@ -186,7 +193,8 @@ function mapStateToProps(state) {
         results: state.search.results,
         recordLabels: state.search.recordLabel,
         player: state.player,
+        devices: state.devices
     }
 }
 
-export default connect(mapStateToProps, { startSetUser, beginSearch })(Home_);
+export default connect(mapStateToProps, { startSetUser, beginSearch, viewDevices })(Home_);

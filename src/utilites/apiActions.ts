@@ -54,6 +54,10 @@ class ApiAction {
   }
     
 
+  getAvailableDevices = async () => {
+    return this.instance.get(`${ApiAction.baseUrl}me/player/devices`)
+  }
+
 }
 
 

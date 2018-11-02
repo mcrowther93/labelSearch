@@ -24,9 +24,11 @@ function* setupSpotifyPlaybackSDK(accessToken){
     getOAuthToken: callback => { callback(accessToken); }
   });
 
-  sdk.addListener('ready', ({ device_id }) => {
-    console.log('Ready with Device ID', device_id);
-    window.localStorage.setItem('deviceId', device_id)
+
+  
+  sdk.addListener('ready', (d) => {
+    console.log('Ready with Device ID', d.device_id);
+    window.localStorage.setItem('deviceId', d.device_id)
   });
 
   yield sdk.connect().then(connected => {

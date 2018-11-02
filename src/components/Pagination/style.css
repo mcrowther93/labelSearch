@@ -1,3 +1,6 @@
+.pagination-steps{
+    background-color: transparent;
+}
 .pagination-steps button{
     padding: 10px;
     border: none;

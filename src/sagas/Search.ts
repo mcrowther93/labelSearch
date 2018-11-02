@@ -49,6 +49,7 @@ export function* search() {
       label: albumDetail.label,
       id: albumDetail.id,
       artistIds: albumArtistsIds,
+      releaseDate: albumDetail.release_date,
       tracks: albumDetail.tracks.items.map(track => {
         return ({
           id: track.id,
@@ -62,8 +63,6 @@ export function* search() {
   const recordLabels = _.uniqBy(albumDetails, 'label').map(ad => ad.label);
   const uniqueIds = _.uniq(allArtistIds);
 
-
-  yield put(addRecordLabel(recordLabels));
   yield put(searchSuccess(albumDetails));
 }
 

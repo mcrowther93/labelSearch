@@ -1,4 +1,7 @@
 import apiActions from './apiActions';
+import store from '../store'
+
+import {playSong, PLAY_SONG} from '../actions/Player';
 
 class SpotifyPlayer {
 
@@ -8,13 +11,16 @@ class SpotifyPlayer {
         this.sdk = sdk;
 
         this.sdk.on('playback_error', ({ message }) => {
-            console.error('Failed to perform playback', message);
-          });
-          this.sdk.addListener('player_state_changed', (payload) => {
-              console.log(`Song changed payload:`, payload)
-          });
-    }
+        console.error('Failed to perform playback', message);
+        });
 
+        this.sdk.addListener('player_state_changed', (payload) => {
+            console.log(`Song changed payload`)
+            store.dispatch(playSong(payload))
+        });
+
+    }
+    
     async isCurrentlyListeningTo() {
         let state = await this.sdk.getCurrentState();
         if (state == null) {
@@ -36,13 +42,12 @@ class SpotifyPlayer {
         }
     }
 
-     pause =  () => {
-         debugger;
-        this.sdk.pause();
+    pause =  () => {
+        this.sdk.togglePlay();
     }
     
     play =  () => {
-        this.sdk.resume();
+        this.sdk.togglePlay();
     }
     
     playSong = (trackId) => {

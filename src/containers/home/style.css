@@ -3,13 +3,9 @@
   }
 
   .results {    
-    display: grid;
-    /* Display as a Grid */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    /* repeat = as many times as you can fit */
-    /* auto-fit = fit as many items on the line as possible, go bigger if you need to */
-    /*minmax = (min size, max size) = the minimum size the column should be is 200px, but if there's space then give them all 1fr of that width. */
-    grid-gap: 10px;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-evenly;
   }
 
 
@@ -33,3 +29,37 @@
 .none{
   display: none;
 }
+
+.webPlayerWrapper{
+position: sticky;
+bottom: 0;
+background-color: rgba(1, 1, 1, 0.75);
+padding: 10px 5px;
+}
+
+
+.ablum-organise{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.ablum-organise > div{
+  flex: 45%;
+}
+
+.album-filter-wrapper{
+  color: grey;
+  padding: 10px 20px;
+}
+
+
+
+.album-sort-wrapper{
+  padding: 10px 20px;  
+  color: grey;
+
+}
+
+

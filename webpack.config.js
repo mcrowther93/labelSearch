@@ -56,6 +56,11 @@ module.exports = {
           loader: 'svg-url-loader',
           options: {}
         }
+      },
+      {
+        test: /\.png$/, 
+        exclude: /node_modules/,
+        loader: 'file-loader?name=images/[name].[ext]'
       }
 
 

@@ -21,11 +21,9 @@ class ApiAction {
     return config;
   }
 
-
-
   searchLabel = async (searchTerm, url)=> {
 
-    const newRequest = `${ApiAction.baseUrl}search?q=${encodeURIComponent("label:" + searchTerm)}&type=Album&offset=0&limit=20&next`;
+    const newRequest = `${ApiAction.baseUrl}search?q=${encodeURIComponent("label:" + searchTerm)}*&type=album&offset=0&limit=20&next`;
     const finalUrl = url ? url : newRequest;
     return await this.instance.get(finalUrl);
     
@@ -38,17 +36,26 @@ class ApiAction {
       return;
     }
 
-    const url = `https://api.spotify.com/v1/albums/?ids=${albumsIds.join(",")}`;
+    const url = `${ApiAction.baseUrl}albums/?ids=${albumsIds.join(",")}`;
     return await this.instance.get(url);
 
   }
 
   playTrack = async (trackId) => {
-    const url = `https://api.spotify.com/v1/me/player/play?device_id=${window.localStorage.getItem('deviceId')}`;
+    const url = `${ApiAction.baseUrl}me/player/play?device_id=${window.localStorage.getItem('deviceId')}`;
     return await this.instance.put(url, {
       'context_uri': `spotify:album:${trackId}`,
-      'offset': {'position': 1}
+      'offset': {'position': 0}
     });
+  }
+
+  callMeEndpoint = async () => {
+      return this.instance.get(`${ApiAction.baseUrl}me`)
+  }
+    
+
+  getAvailableDevices = async () => {
+    return this.instance.get(`${ApiAction.baseUrl}me/player/devices`)
   }
 
 }

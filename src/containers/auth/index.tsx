@@ -22,16 +22,18 @@ class Auth extends React.Component<IAuthProps, IAuthState>{
     private spotifyAuth = 'https://accounts.spotify.com/authorize?' + 
    'client_id=b26546b8389b4256b77be170b06bff52&' + 
     'redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth&' + 
-    'scope=user-read-private%20user-read-email%20user-modify-playback-state%20streaming&' + 
+    'scope=user-read-private%20user-read-playback-state%20user-read-email%20user-modify-playback-state%20streaming%20user-read-birthdate&' + 
     'response_type=token&' + 
     'state=123';
-
+    
+    
     constructor(props, state){
         super(props, state);
     }
 
     componentDidMount() {
 
+        // this is bad -- move into saga....
         if(self.window.location.href.includes('access_token')){
             const params: any = getQueryParams(self.window.location.hash);
             const accessToken = params.access_token;

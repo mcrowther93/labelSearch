@@ -18,6 +18,7 @@ interface IAuthProps {
     searchResults: any[],
     navigateToAbum(albumId): void,
     editLabel(label): void
+    favouriteAlbums: []
 }
 
 export default class SearchResultsContainer extends React.Component<IAuthProps, IAuthState>{
@@ -74,6 +75,8 @@ export default class SearchResultsContainer extends React.Component<IAuthProps, 
 
                         {results.slice(beginningItem, beginningItem + 15).map((album, index) => {
                             const background = album.images && album.images.url ? album.images.url : "";
+                            const albumLikedCSS = this.props.favouriteAlbums.includes(album.label) && "favourite"
+                            
                             return (
                                 <div className={'searchresult-album'}>
 
@@ -87,7 +90,10 @@ export default class SearchResultsContainer extends React.Component<IAuthProps, 
 
                                             <div className={'searchResults-albumDetails'}>
                                                 <span id={'album-name'}>{album.name}</span>
-                                                <span onClick={() => this.toggleAlbum(album.label)} id={'album-label'}>{album.label}</span>
+                                                <span onClick={() => this.toggleAlbum(album.label)} id={'album-label'}>
+                                                    {album.label}
+                                                    <div className={`icon ${albumLikedCSS}`}></div>
+                                                    </span>
                                             </div>
                                         </div>
                                     </SelectableItem>

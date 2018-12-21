@@ -71,7 +71,7 @@ padding: 0 10px;
  }
 
 #album-name{font-weight: bold}
-#album-label{font-style: italic}
+#album-label{font-style: italic; display: flex}
 
 .example-enter {
     opacity: 0.01;
@@ -89,4 +89,10 @@ padding: 0 10px;
   .example-exit.example-exit-active {
     opacity: 0.01;
     transition: opacity 300ms ease-in;
+  }
+
+
+  .favourite::before{
+      content: '♥';
+      color: red;
   }

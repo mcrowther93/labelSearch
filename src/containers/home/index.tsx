@@ -33,7 +33,8 @@ interface IAuthProps {
     results: any[];
     recordLabels: string[];
     player: any;
-    devices: IDevice
+    devices: IDevice,
+    favouriteLabels: []
 }
 
 class Home_ extends React.Component<IAuthProps, IAuthState>{
@@ -179,6 +180,7 @@ class Home_ extends React.Component<IAuthProps, IAuthState>{
                                     navigateToAbum={this.navigateToAlbum}
                                     searchResults={sortedAlbums}
                                     editLabel={this.toggleLabel}
+                                    favouriteAlbums={this.props.favouriteLabels}
                                 />}
                             </div>
                             {this.props.player.isPlaying && 
@@ -200,7 +202,8 @@ function mapStateToProps(state) {
         results: state.search.results,
         recordLabels: state.search.recordLabel,
         player: state.player,
-        devices: state.devices
+        devices: state.devices,
+        favouriteLabels: state.activeUser.likedLabels
     }
 }
 

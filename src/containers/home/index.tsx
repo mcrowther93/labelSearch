@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { startSetUser, IAuthUser } from '../../actions/Authorisation'
 import { beginSearch } from '../../actions/Search'
 import { viewDevices, IDevice } from '../../actions/Devices'
+import {editLabel} from '../../actions/ActiveUser'
 
 import { TextBox } from '../../components/TextBox'
 import SearchResultsContainer from '../SearchResults'
@@ -26,7 +27,8 @@ interface IAuthProps {
     user: IAuthUser;
     startSetUser(): void;
     beginSearch(value): void;
-    viewDevices(): void
+    viewDevices(): void,
+    editLabel(label): void
     history: any;
     results: any[];
     recordLabels: string[];
@@ -97,6 +99,10 @@ class Home_ extends React.Component<IAuthProps, IAuthState>{
         this.setState({ sortBy: sortBy[0] });
 
     }
+
+    toggleLabel = (label) => {
+        this.props.editLabel(label)
+    } 
 
  
 
@@ -172,6 +178,7 @@ class Home_ extends React.Component<IAuthProps, IAuthState>{
                                 {sortedAlbums.length > 0 && <SearchResultsContainer
                                     navigateToAbum={this.navigateToAlbum}
                                     searchResults={sortedAlbums}
+                                    editLabel={this.toggleLabel}
                                 />}
                             </div>
                             {this.props.player.isPlaying && 
@@ -197,4 +204,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { startSetUser, beginSearch, viewDevices })(Home_);
+export default connect(mapStateToProps, { startSetUser, beginSearch, viewDevices, editLabel })(Home_);

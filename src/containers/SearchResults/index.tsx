@@ -1,14 +1,10 @@
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { connect } from 'react-redux'
-import { setAuthInfo } from '../../actions/Authorisation'
-import { bindActionCreators } from 'redux'
 import { SelectableItem } from '../../components/SelectableItem'
 import apiActions from './../../utilites/apiActions'
 import getQueryParams from '../../utilites/StringToObject'
 import Pagination from '../../components/Pagination'
-import {TransitionGroup, CSSTransition} from 'react-transition-group';
 
 import './style.css'
 
@@ -20,7 +16,8 @@ interface IAuthState {
 
 interface IAuthProps {
     searchResults: any[],
-    navigateToAbum(albumId): void;
+    navigateToAbum(albumId): void,
+    editLabel(label): void
 }
 
 export default class SearchResultsContainer extends React.Component<IAuthProps, IAuthState>{
@@ -61,6 +58,10 @@ export default class SearchResultsContainer extends React.Component<IAuthProps, 
 
     }
 
+    toggleAlbum = (label) => {
+        this.props.editLabel(label)
+    }
+
     renderResults = () => {
         const { results } = this.state;
 
@@ -86,7 +87,7 @@ export default class SearchResultsContainer extends React.Component<IAuthProps, 
 
                                             <div className={'searchResults-albumDetails'}>
                                                 <span id={'album-name'}>{album.name}</span>
-                                                <span id={'album-label'}>{album.label}</span>
+                                                <span onClick={() => this.toggleAlbum(album.label)} id={'album-label'}>{album.label}</span>
                                             </div>
                                         </div>
                                     </SelectableItem>

@@ -1,14 +1,18 @@
 import { takeEvery, put, call, take, select, takeLatest } from 'redux-saga/effects'
-import { COUNT_DECREMENT } from '../actions'
-import { setUser, START_SET_USERS_USER, SET_USERS_USER } from '../actions/Authorisation'
+import { START_SET_USERS_USER, SET_USERS_USER } from '../actions/Authorisation'
+import { EDIT_ACTIVE_DATE } from '../actions/ActiveUser'
+
 import axios from 'axios'
 import spotifyPlayer from '../utilites/player';
 import apiActions from './../utilites/apiActions';
 
+
 export function* setAuth() {
   const authorisation = yield select((state: any) => state.authorisation);
   const response = yield apiActions.callMeEndpoint();
+
   yield put({ type: SET_USERS_USER, payload: response.data });
+  yield put({ type: EDIT_ACTIVE_DATE, payload: new Date().getTime() });
 
   yield setupSpotifyPlaybackSDK(authorisation.accessToken);
 }

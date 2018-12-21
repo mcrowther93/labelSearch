@@ -12,7 +12,7 @@
         display: grid;
         justify-content: center;
         /* flex-wrap: wrap; */
-        grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(33%, 1fr));
     }
 }
 
@@ -67,4 +67,26 @@ padding: 0 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: rgb(215, 175, 149);
  }
+
+#album-name{font-weight: bold}
+#album-label{font-style: italic}
+
+.example-enter {
+    opacity: 0.01;
+  }
+  
+  .example-enter.example-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+  }
+  
+  .example-exit {
+    opacity: 1;
+  }
+  
+  .example-exit.example-exit-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+  }

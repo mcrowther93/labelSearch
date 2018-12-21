@@ -8,6 +8,7 @@ import { SelectableItem } from '../../components/SelectableItem'
 import apiActions from './../../utilites/apiActions'
 import getQueryParams from '../../utilites/StringToObject'
 import Pagination from '../../components/Pagination'
+import {TransitionGroup, CSSTransition} from 'react-transition-group';
 
 import './style.css'
 
@@ -28,7 +29,7 @@ export default class SearchResultsContainer extends React.Component<IAuthProps, 
         super(props, state);
 
         this.state = {
-            step: 0, 
+            step: 0,
             results: []
         }
 
@@ -56,7 +57,6 @@ export default class SearchResultsContainer extends React.Component<IAuthProps, 
 
         this.setState({
             results: nextProps.searchResults,
-            step: 0
         })
 
     }
@@ -64,38 +64,36 @@ export default class SearchResultsContainer extends React.Component<IAuthProps, 
     renderResults = () => {
         const { results } = this.state;
 
-        const beginningItem: number = this.state.step * 12;
+        const beginningItem: number = this.state.step * 15;
         return (
-            <Pagination itemsPerStep={12} step={this.state.step} 
-                        numberOfItems={results.length} next={this.nextSteps}>
+            <Pagination itemsPerStep={15} step={this.state.step}
+                numberOfItems={results.length} next={this.nextSteps}>
 
+                    <div className={'searchResult'}>
 
+                        {results.slice(beginningItem, beginningItem + 15).map((album, index) => {
+                            const background = album.images && album.images.url ? album.images.url : "";
+                            return (
+                                <div className={'searchresult-album'}>
 
-                <div className={'searchResult'}>
+                                    <SelectableItem
+                                        onHover={null}
+                                        isSelected={this.clickImage}
+                                        key={album.id}
+                                        itemId={album.id}>
+                                        <img className={'searchResult-albumCover'} src={background} />
+                                        <div>
 
-                    {results.slice(beginningItem, beginningItem + 12).map((album, index) => {
-                        const background = album.images && album.images.url ? album.images.url : "";
-                        return (
-                            <div className={'searchresult-album'}>
-
-                                <SelectableItem
-                                    onHover={null}
-                                    isSelected={this.clickImage}
-                                    key={album.id}
-                                    itemId={album.id}>
-                                    <img className={'searchResult-albumCover'} src={background} />
-                                    <div>
-
-                                        <div className={'searchResults-albumDetails'}>
-                                            <div>{album.name}</div>
-                                            <div>{album.label}</div>
+                                            <div className={'searchResults-albumDetails'}>
+                                                <span id={'album-name'}>{album.name}</span>
+                                                <span id={'album-label'}>{album.label}</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                </SelectableItem>
-                            </div>
-                        )
-                    })}
-                </div>
+                                    </SelectableItem>
+                                </div>
+                            )
+                        })}
+                    </div>
 
             </Pagination>
         )

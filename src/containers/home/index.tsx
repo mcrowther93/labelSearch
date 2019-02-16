@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { startSetUser, IAuthUser } from '../../actions/Authorisation'
 import { beginSearch } from '../../actions/Search'
 import { viewDevices, IDevice } from '../../actions/Devices'
-import {editLabel} from '../../actions/ActiveUser'
+import { editLabel } from '../../actions/ActiveUser'
 
 import { TextBox } from '../../components/TextBox'
 import SearchResultsContainer from '../SearchResults'
@@ -47,10 +47,7 @@ class Home_ extends React.Component<IAuthProps, IAuthState>{
             filterBy: [],
             sortBy: ''
         };
-        this.navigateToAlbum = this.navigateToAlbum.bind(this);
-
         this.search = _.debounce(this.search, 500, { leading: false, trailing: true })
-
     }
 
     componentDidMount() {
@@ -58,11 +55,11 @@ class Home_ extends React.Component<IAuthProps, IAuthState>{
             console.log(`User profile`, this.props.user)
 
 
-            if (!this.props.user._id){}
-                this.props.startSetUser();
+            if (!this.props.user._id) { }
+            this.props.startSetUser();
 
 
-        this.props.viewDevices()
+            this.props.viewDevices()
 
 
         } else {
@@ -84,7 +81,7 @@ class Home_ extends React.Component<IAuthProps, IAuthState>{
     }
 
 
-    navigateToAlbum(albumId) {
+    navigateToAlbum = (albumId) => {
         this.props.history.push(`/albums/${albumId}`)
     }
 
@@ -103,31 +100,37 @@ class Home_ extends React.Component<IAuthProps, IAuthState>{
 
     toggleLabel = (label) => {
         this.props.editLabel(label)
-    } 
+    }
 
- 
+
 
     renderFilter = () => {
         return (
             <div className={'ablum-organise'}>
                 <div className={'album-filter-wrapper'}>
-                    <MultiSelect style={{ maxHeight: "150px", overflowY: "scroll", backgroundColor: "white", boxShadow:" 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" }}
+                    <MultiSelect style={{
+                        padding: "10px",
+                        borderRadius: "14px", maxHeight: "150px", overflowY: "scroll", backgroundColor: "white", boxShadow: " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
+                    }}
                         itemStyle={{ padding: "5px 5px" }}
                         isSelected={this.filterAlbum}
-                        onHover={null} 
+                        onHover={null}
                         items={this.props.recordLabels.filter(f => !this.state.filterBy.includes(f))}
                         canSelectMultiple={true}
-                        selectedStyle={{backgroundColor: 'rgb(215, 175, 149)', color: "white"}}
+                        selectedStyle={{ backgroundColor: 'rgb(67, 68, 84)', color: "white" }}
                         type={"TAG"}
                     />
                 </div>
                 <div className={'album-sort-wrapper'}>
-                    <MultiSelect style={{ maxHeight: "150px", overflowY: "scroll" , backgroundColor: "white" , boxShadow:" 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" }}
+                    <MultiSelect style={{
+                        padding: "10px",
+                        borderRadius: "14px", maxHeight: "150px", overflowY: "scroll", backgroundColor: "white", boxShadow: " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
+                    }}
                         itemStyle={{ padding: "5px 5px" }}
                         isSelected={this.sortAlbum}
                         onHover={null}
-                        items={['Release Day (Desending)', 'A-Z Album Name']}
-                        selectedStyle={{backgroundColor: 'rgb(215, 175, 149)', color: "white"}}
+                        items={['Release Day (Desending)', 'A-Z Album Name', 'Popularity']}
+                        selectedStyle={{ backgroundColor: 'rgb(67, 68, 84)', color: "white" }}
                         type={"NORMAL"}
                     />
                 </div>
@@ -143,6 +146,8 @@ class Home_ extends React.Component<IAuthProps, IAuthState>{
                 return albums.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate);
             case 'A-Z Album Name':
                 return albums.sort((a, b) => a.name.localeCompare(b.name))
+            case 'Popularity':
+                return albums.sort((a, b) => a.popularity < b.popularity ? 1 : -1)
             default:
                 return albums;
         }
@@ -150,12 +155,15 @@ class Home_ extends React.Component<IAuthProps, IAuthState>{
     }
 
     renderSearch = () => {
-        return (<div className={'searchBox'}><TextBox
-            // selectionOptions={this.props.recordLabels}
-            onValueChange={this.validateSearch}
-            style={{ outline: 'none', width: '100%', height: '50px', lineHeight: '100%', fontSize: '150%' }}
-            placeholder={'Search For Label'}>
-        </TextBox></div>)
+        return (
+            <div className={'searchBox'}>
+                <TextBox
+                    onValueChange={this.validateSearch}
+                    style={{ outline: 'none', width: '100%', height: '50px', lineHeight: '100%', fontSize: '150%' }}
+                    placeholder={'Search For Label'}>
+                </TextBox>
+            </div>
+        )
     }
 
     render() {
@@ -183,9 +191,9 @@ class Home_ extends React.Component<IAuthProps, IAuthState>{
                                     favouriteAlbums={this.props.favouriteLabels}
                                 />}
                             </div>
-                            {this.props.player.isPlaying && 
+                            {this.props.player.isPlaying &&
                                 <div className={'webPlayerWrapper'}>
-                                <WebPlayer />
+                                    <WebPlayer />
                                 </div>
                             }
                         </div>

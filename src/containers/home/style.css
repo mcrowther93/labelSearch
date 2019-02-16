@@ -14,8 +14,22 @@
   margin: 10px 20px;
 }
 
-.searchBoxInput{
 
+
+/* @keyframes linearMove{
+  0% { }  
+  100% { }
+} */
+
+.searchBox input{
+  border-radius: 50px;
+  border: 2px solid grey;
+
+}
+
+.searchBox input:focus{
+  border: 2px solid rgb(215, 175, 149);
+  background-color: rgb(83, 80, 91)
 }
 
 
@@ -25,6 +39,7 @@
     text-align: center;
 }
 
+.tag{ padding: 0 2rem;}
 
 .none{
   display: none;
@@ -43,7 +58,8 @@ padding: 10px 5px;
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
-}
+  background-color: #3a3a3a;
+  box-shadow: 0 0 6px 1px #d8af93;}
 
 .ablum-organise > div{
   flex: 45%;

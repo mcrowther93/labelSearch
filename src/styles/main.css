@@ -1,16 +1,15 @@
 
 body {
-    background-color: #434453;
+    background: repeating-linear-gradient(to right,   #434455,   #434455 50px, #2f2f2f 10px, #969696 51px);
     height: 100vh;
     background-attachment: fixed;
     background-repeat: inherit;
     font-family: 'Poppins', sans-serif;
     color: #DABEAF;
-
 }
  h1, h2, h3, h4, h5, h6 {
      margin: 0;
-     color: #CB1A12;
+     color: #c1c1c1;
  }
  @media (min-width: 200px) {
   body{

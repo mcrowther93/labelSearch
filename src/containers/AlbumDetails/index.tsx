@@ -13,8 +13,6 @@ interface IAuthProps {
     history: History,
     location: Location,
     albums
-
-
 }
 
 class AlbumDetails extends React.Component<IAuthProps, IAuthState>{
@@ -45,16 +43,12 @@ class AlbumDetails extends React.Component<IAuthProps, IAuthState>{
     render(){
 
         const {album} = this.state
-
         return(
             <div>
                 <h1> {album && album.name} </h1>
-
                 <ul>
                     {album &&  album.tracks.map((track) => <li key={track.id}> {track.name} </li>)}
                 </ul>
-
-
             </div>
         );
     }

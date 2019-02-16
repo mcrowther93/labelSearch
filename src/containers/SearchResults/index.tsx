@@ -71,36 +71,44 @@ export default class SearchResultsContainer extends React.Component<IAuthProps, 
             <Pagination itemsPerStep={15} step={this.state.step}
                 numberOfItems={results.length} next={this.nextSteps}>
 
-                    <div className={'searchResult'}>
+                <div className={'searchResult'}>
 
-                        {results.slice(beginningItem, beginningItem + 15).map((album, index) => {
-                            const background = album.images && album.images.url ? album.images.url : "";
-                            const albumLikedCSS = this.props.favouriteAlbums.includes(album.label) && "favourite"
-                            
-                            return (
-                                <div className={'searchresult-album'}>
+                    {results.slice(beginningItem, beginningItem + 15).map((album, index) => {
+                        const background = album.images && album.images.url ? album.images.url : "";
+                        const albumLikedCSS = this.props.favouriteAlbums.includes(album.label) && "favourite"
 
-                                    <SelectableItem
-                                        onHover={null}
-                                        isSelected={this.clickImage}
-                                        key={album.id}
-                                        itemId={album.id}>
+                        return (
+                            <div>
+
+                                <SelectableItem
+                                    onHover={null}
+                                    isSelected={null}
+                                    key={album.id}
+                                    itemId={album.id}>
+                                    <div className={'searchresult-album'}>
+
                                         <img className={'searchResult-albumCover'} src={background} />
-                                        <div>
+                                        <div className={"ablumDetails-wrapper"}>
+                                            <div className={'flex-center'}>                                                
+                                                <h2 onClick={() => this.clickImage(album.id)}>Play/Pause</h2>
+                                                <h2>Details Page</h2>
+                                                </div>
 
-                                            <div className={'searchResults-albumDetails'}>
+                                        </div>
+                                    </div>
+                                </SelectableItem>
+
+                                <div className={'searchResults-albumDetails'}>
                                                 <span id={'album-name'}>{album.name}</span>
                                                 <span onClick={() => this.toggleAlbum(album.label)} id={'album-label'}>
                                                     {album.label}
                                                     <div className={`icon ${albumLikedCSS}`}></div>
-                                                    </span>
+                                                </span>
                                             </div>
-                                        </div>
-                                    </SelectableItem>
-                                </div>
-                            )
-                        })}
-                    </div>
+                            </div>
+                        )
+                    })}
+                </div>
 
             </Pagination>
         )

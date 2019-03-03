@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { viewDevices, IDevice, setActiveDevice } from '../../actions/Devices'
 
 import {MultiSelect} from '../../components/MultiSelect'
+import './style.css'
 
 
 import * as _ from 'lodash'
@@ -52,26 +53,21 @@ class StickyHeader extends React.Component<IAuthProps, IAuthState>{
 
     }
 
- 
     componentWillReceiveProps = (props:IAuthProps) => {
         this.setState({
             devicePlaying: props.devices.activeDevice
         })
     }
 
-
-
-
-
     stickyDevices = () => {
 
         const {devices :{availableDevices}} = this.props
         
         return(
-            <div className={'sicky devices'}>
+            <div className={'sticky devices'}>
                 
-                <h3 onClick={this.onBannerClick}>View Devices</h3>
-            
+                {/* <h3 onClick={this.onBannerClick}>View Devices</h3> */}
+                <img src={'https://vectr.com/mcrowther/a75ktiBOXl.svg?width=597&height=430&select=a75ktiBOXlpage0'} />
                 {this.state.isVisible &&
 
                     <MultiSelect 
@@ -86,6 +82,9 @@ class StickyHeader extends React.Component<IAuthProps, IAuthState>{
                     />
              
                 }
+
+                <h3 onClick={this.onBannerClick}>My Labels</h3>
+
 
             </div>
         )

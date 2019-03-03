@@ -11,6 +11,7 @@ interface IAuthProps {
     style?: React.CSSProperties,
     placeholder?: string;
     onValueChange(value): void;
+    className?: string;
 }
 
 export class TextBox extends React.Component<IAuthProps, IAuthState>{
@@ -30,6 +31,7 @@ export class TextBox extends React.Component<IAuthProps, IAuthState>{
     render() {
         return (
             <input
+                className={this.props.className}
                 type="text"
                 value={this.state.value}
                 onChange={this.handleChange}

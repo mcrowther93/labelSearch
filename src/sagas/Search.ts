@@ -50,6 +50,7 @@ export function* search() {
       id: albumDetail.id,
       artistIds: albumArtistsIds,
       releaseDate: albumDetail.release_date,
+      popularity: albumDetail.popularity,
       tracks: albumDetail.tracks.items.map(track => {
         return ({
           id: track.id,

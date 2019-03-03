@@ -1,14 +1,10 @@
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { connect } from 'react-redux'
-import { setAuthInfo } from '../../actions/Authorisation'
-import { bindActionCreators } from 'redux'
 import { SelectableItem } from '../../components/SelectableItem'
 import apiActions from './../../utilites/apiActions'
 import getQueryParams from '../../utilites/StringToObject'
 import Pagination from '../../components/Pagination'
-import {TransitionGroup, CSSTransition} from 'react-transition-group';
 
 import './style.css'
 
@@ -20,7 +16,9 @@ interface IAuthState {
 
 interface IAuthProps {
     searchResults: any[],
-    navigateToAbum(albumId): void;
+    navigateToAbum(albumId): void,
+    editLabel(label): void
+    favouriteAlbums: []
 }
 
 export default class SearchResultsContainer extends React.Component<IAuthProps, IAuthState>{
@@ -61,6 +59,10 @@ export default class SearchResultsContainer extends React.Component<IAuthProps, 
 
     }
 
+    toggleAlbum = (label) => {
+        this.props.editLabel(label)
+    }
+
     renderResults = () => {
         const { results } = this.state;
 
@@ -69,31 +71,44 @@ export default class SearchResultsContainer extends React.Component<IAuthProps, 
             <Pagination itemsPerStep={15} step={this.state.step}
                 numberOfItems={results.length} next={this.nextSteps}>
 
-                    <div className={'searchResult'}>
+                <div className={'searchResult'}>
 
-                        {results.slice(beginningItem, beginningItem + 15).map((album, index) => {
-                            const background = album.images && album.images.url ? album.images.url : "";
-                            return (
-                                <div className={'searchresult-album'}>
+                    {results.slice(beginningItem, beginningItem + 15).map((album, index) => {
+                        const background = album.images && album.images.url ? album.images.url : "";
+                        const albumLikedCSS = this.props.favouriteAlbums.includes(album.label) && "favourite"
 
-                                    <SelectableItem
-                                        onHover={null}
-                                        isSelected={this.clickImage}
-                                        key={album.id}
-                                        itemId={album.id}>
+                        return (
+                            <div>
+
+                                <SelectableItem
+                                    isSelected={null}
+                                    key={album.id}
+                                    itemId={album.id}
+                                    onHover={}>
+                                    <div className={'searchresult-album'}>
+
                                         <img className={'searchResult-albumCover'} src={background} />
-                                        <div>
+                                        <div className={"ablumDetails-wrapper"}>
+                                            <div className={'flex-center'}>                                                
+                                                <h2 onClick={() => this.clickImage(album.id)}>Play/Pause</h2>
+                                                <h2>Details Page</h2>
+                                                </div>
 
-                                            <div className={'searchResults-albumDetails'}>
-                                                <span id={'album-name'}>{album.name}</span>
-                                                <span id={'album-label'}>{album.label}</span>
-                                            </div>
                                         </div>
-                                    </SelectableItem>
-                                </div>
-                            )
-                        })}
-                    </div>
+                                    </div>
+                                </SelectableItem>
+
+                                <div className={'searchResults-albumDetails'}>
+                                                <span id={'album-name'}>{album.name}</span>
+                                                <span onClick={() => this.toggleAlbum(album.label)} id={'album-label'}>
+                                                    {album.label}
+                                                    <div className={`icon ${albumLikedCSS}`}></div>
+                                                </span>
+                                            </div>
+                            </div>
+                        )
+                    })}
+                </div>
 
             </Pagination>
         )

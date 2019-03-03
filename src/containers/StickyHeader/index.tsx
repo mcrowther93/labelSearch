@@ -66,8 +66,8 @@ class StickyHeader extends React.Component<IAuthProps, IAuthState>{
         return(
             <div className={'sticky devices'}>
                 
-                <h3 onClick={this.onBannerClick}>View Devices</h3>
-            
+                {/* <h3 onClick={this.onBannerClick}>View Devices</h3> */}
+                <img src={'https://vectr.com/mcrowther/a75ktiBOXl.svg?width=597&height=430&select=a75ktiBOXlpage0'} />
                 {this.state.isVisible &&
 
                     <MultiSelect 

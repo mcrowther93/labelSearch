@@ -184,12 +184,17 @@ class Home_ extends React.Component<IAuthProps, IAuthState>{
 
                             </div>
                             <div style={{ margin: '10px 20px' }}>
-                                {sortedAlbums.length > 0 && <SearchResultsContainer
-                                    navigateToAbum={this.navigateToAlbum}
-                                    searchResults={sortedAlbums}
-                                    editLabel={this.toggleLabel}
-                                    favouriteAlbums={this.props.favouriteLabels}
-                                />}
+
+                                <React.Suspense   fallback={<div>Loading....</div>} >
+
+                                    {sortedAlbums.length > 0 && <SearchResultsContainer
+                                        navigateToAbum={this.navigateToAlbum}
+                                        searchResults={sortedAlbums}
+                                        editLabel={this.toggleLabel}
+                                        favouriteAlbums={this.props.favouriteLabels}
+                                    />}
+                                </React.Suspense>
+
                             </div>
                             {this.props.player.isPlaying &&
                                 <div className={'webPlayerWrapper'}>

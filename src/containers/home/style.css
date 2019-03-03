@@ -59,7 +59,9 @@ padding: 10px 5px;
   justify-content: space-between;
   flex-wrap: wrap;
   background-color: #3a3a3a;
-  box-shadow: 0 0 6px 1px #d8af93;}
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 0 20px;
+}
 
 .ablum-organise > div{
   flex: 45%;

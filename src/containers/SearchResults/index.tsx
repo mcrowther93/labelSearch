@@ -81,10 +81,10 @@ export default class SearchResultsContainer extends React.Component<IAuthProps, 
                             <div>
 
                                 <SelectableItem
-                                    onHover={null}
                                     isSelected={null}
                                     key={album.id}
-                                    itemId={album.id}>
+                                    itemId={album.id}
+                                    onHover={}>
                                     <div className={'searchresult-album'}>
 
                                         <img className={'searchResult-albumCover'} src={background} />

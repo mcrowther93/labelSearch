@@ -5,7 +5,6 @@ import {SET_USERS_AUTHORISATION_INFO, IAuthUser
 const inititalState = {
     accessToken: '',
     expires_in: '',
-    name: null,
     _id: '',
     loadingProfile: false
 } as IAuthUser;
@@ -17,7 +16,6 @@ export const authorisationReducer = handleActions({
     }),
     [SET_USERS_USER]: (state: IAuthUser, {payload}) => ({
         ...state,
-        name: 'n/a gdpr :)',
         loadingProfile: false
     }),
     [START_SET_USERS_USER]: (state: IAuthUser, {payload}) => ({
@@ -25,5 +23,4 @@ export const authorisationReducer = handleActions({
         loadingProfile: true
     }),
 
-}
-  , inititalState);
+}, inititalState);

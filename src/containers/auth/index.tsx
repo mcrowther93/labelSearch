@@ -7,17 +7,12 @@ import {bindActionCreators} from 'redux'
 
 import getQueryParams from '../../utilites/StringToObject'
 
-
-interface IAuthState {
-}
-
 interface IAuthProps {
     setAuthInfo(params): void;
     history: any
 }
 
-
-class Auth extends React.Component<IAuthProps, IAuthState>{
+class Auth extends React.Component<IAuthProps>{
 
     private spotifyAuth = 'https://accounts.spotify.com/authorize?' + 
    'client_id=b26546b8389b4256b77be170b06bff52&' + 

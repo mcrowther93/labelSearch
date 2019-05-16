@@ -78,13 +78,10 @@ export default class SearchResultsContainer extends React.Component<IAuthProps, 
                         const albumLikedCSS = this.props.favouriteAlbums.includes(album.label) && "favourite"
 
                         return (
-                            <div>
+                            <div key={album.id}>
 
                                 <SelectableItem
-                                    isSelected={null}
-                                    key={album.id}
-                                    itemId={album.id}
-                                    onHover={}>
+                                    itemId={album.id}>
                                     <div className={'searchresult-album'}>
 
                                         <img className={'searchResult-albumCover'} src={background} />

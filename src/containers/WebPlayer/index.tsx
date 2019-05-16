@@ -21,12 +21,6 @@ export class Player extends React.Component<IAuthProps, IAuthState>{
         super(props, state);
     }
 
-
-    handleAction = () => {
-
-    }
-
-
     renderSongDetails = (song) => {
         return (
             <div className={'nowPlayingDetails'}>
@@ -37,7 +31,6 @@ export class Player extends React.Component<IAuthProps, IAuthState>{
     }
 
     render() {
-
         const {player} = this.props;
 
         return (
@@ -48,13 +41,11 @@ export class Player extends React.Component<IAuthProps, IAuthState>{
                         <button className={player.isPaused ? 'webplayer-play' : 'webplayer-pause'} onClick={spotifyPlayer.pause} ></button>
                     </div>
                     <button className={'webplayer-next'} onClick={spotifyPlayer.nextSong} ></button>
-
                 </div>
                 {player && player.song && this.renderSongDetails(player.song)}
                 
             </div>
         )
-
     }
 }
 

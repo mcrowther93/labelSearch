@@ -3,7 +3,6 @@ import {PLAY_SONG, playSong, IPlayer} from '../actions/Player'
 
 
 interface INowPLaying  {
-
     id: string,
     currentSong: string,
     nextSong?: INowPLaying,
@@ -11,11 +10,11 @@ interface INowPLaying  {
     artistName: string
 }
 
-const inititalState = {
-song: null as INowPLaying,
-isPlaying: false,
-isPaused: false
-} as IPlayer;
+const inititalState: IPlayer = {
+    song: null as INowPLaying,
+    isPlaying: false,
+    isPaused: false
+}
 
 export const playerReducer = handleActions({
     [PLAY_SONG]: (state: IPlayer, {payload}) => ({
@@ -24,13 +23,12 @@ export const playerReducer = handleActions({
         isPaused: payload.paused,
         song: transformIntoSong(payload.track_window)
     })
-},inititalState);
+}, inititalState);
 
 
-const transformIntoSong = (payload) => {
+const transformIntoSong = (payload): INowPLaying => {
 
     const currentSong = payload.current_track;
-
     const nextSong = payload.next_tracks.length > 0 ? payload.next_tracks[0] : null;
 
     return {
@@ -43,7 +41,6 @@ const transformIntoSong = (payload) => {
             currentSong: nextSong.name,
             duration: nextSong.duration_ms,
             id: nextSong.id,
-        } as INowPLaying
-
-    } as INowPLaying;
+        }
+    };
 }

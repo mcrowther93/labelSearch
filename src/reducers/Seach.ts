@@ -34,20 +34,16 @@ const uniuqeRecordLabel = (albums) => {
     return _.uniqBy(albums, (album) => album.label).map(ad => ad.label);
 }
 
-
 const groupByRecordLabel = (albums) => {
 
     const groupedAlbum = albums.reduce((groupByRecordLabel, album) => {
-
         const recordLabel = album.label;
 
         if(groupByRecordLabel[recordLabel] === undefined){
         groupByRecordLabel[recordLabel] = [];
         }
 
-        groupByRecordLabel[recordLabel].push(album);
-
-        return groupByRecordLabel;
+        return [...groupByRecordLabel, album];
 
     }, {})
 

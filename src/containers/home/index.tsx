@@ -15,6 +15,7 @@ import './style.css'
 
 import * as _ from 'lodash'
 import StickyHeader from "../StickyHeader";
+import SidePanel from '../../components/SidePanel';
 
 interface IAuthState {
     firstLoad: boolean;
@@ -177,6 +178,8 @@ class Home_ extends React.Component<IAuthProps, IAuthState>{
                 {
                     user.loadingProfile ? 'Loading Profile' :
                         <div className={'app-wrapper'}>
+                            <SidePanel />
+
                             <div>
                                 {this.renderSearch()}
 

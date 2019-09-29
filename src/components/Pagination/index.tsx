@@ -70,17 +70,17 @@ export default class Pagination extends React.Component<IAuthProps, IAuthState>{
         return (
             <div className={'pagination-steps'}>
 
-                <button className={'pagination-previous'} onClick={currentStep > 0 && this.previous} > Previous </button>
+                <button className={'pagination-previous'} onClick={currentStep > 0 ? this.previous : null} > Previous </button>
                 {
                     _.range(0, pages).map((p, index) => {
 
                         const backgroundColour = p === currentStep && 'rgb(215, 175, 149)'
 
-                        return <button style={{ backgroundColor: backgroundColour }}
+                        return <button key={index} style={{ backgroundColor: backgroundColour }}
                             onClick={() => this.goToStep(p)}>{p + 1}</button>
                     })
                 }
-                <button className={'pagination-next'} onClick={currentStep + 1 < pages && this.next} > Next </button>
+                <button className={'pagination-next'} onClick={currentStep + 1 < pages ? this.next : null} > Next </button>
 
             </div>
 

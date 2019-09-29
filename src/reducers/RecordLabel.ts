@@ -14,7 +14,6 @@ export const recordLabelReducer = handleActions({
 
 
 const labelExists = (labelNames: string[], existingLabels): string[] => {
-
     labelNames.forEach(label => {
         if (!_.includes(existingLabels, label)) {
             existingLabels.push(label)

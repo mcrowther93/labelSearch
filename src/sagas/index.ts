@@ -1,6 +1,10 @@
 import { takeEvery, put, call, take, select, takeLatest } from 'redux-saga/effects'
 import { START_SET_USERS_USER, SET_USERS_USER } from '../actions/Authorisation'
+<<<<<<< HEAD
+import { EDIT_ACTIVE_DATE, ADD_MY_PLAYLIST } from '../actions/ActiveUser'
+=======
 import { EDIT_ACTIVE_DATE } from '../actions/ActiveUser'
+>>>>>>> master
 
 import axios from 'axios'
 import spotifyPlayer from '../utilites/player';
@@ -10,9 +14,32 @@ import apiActions from './../utilites/apiActions';
 export function* setAuth() {
   const authorisation = yield select((state: any) => state.authorisation);
   const response = yield apiActions.callMeEndpoint();
+<<<<<<< HEAD
+  let roundHerePlaylist, usersPlaylist;
+  let nextUrl;
+
+  do {
+    usersPlaylist = yield apiActions.getMyPlaylist(nextUrl);
+    roundHerePlaylist = usersPlaylist.data.items.filter(playlist => playlist.name === 'RoundHere...')
+    nextUrl = usersPlaylist.data.next 
+  } while(usersPlaylist.data.next && roundHerePlaylist.length < 1)
+
+
+  if(roundHerePlaylist.length < 1){
+    roundHerePlaylist = yield apiActions.createPlaylist(response.data.id).data;
+  }else {
+    roundHerePlaylist = roundHerePlaylist[0];
+  }
+
 
   yield put({ type: SET_USERS_USER, payload: response.data });
   yield put({ type: EDIT_ACTIVE_DATE, payload: new Date().getTime() });
+  yield put({type: ADD_MY_PLAYLIST, payload: roundHerePlaylist.id});
+=======
+
+  yield put({ type: SET_USERS_USER, payload: response.data });
+  yield put({ type: EDIT_ACTIVE_DATE, payload: new Date().getTime() });
+>>>>>>> master
 
   yield setupSpotifyPlaybackSDK(authorisation.accessToken);
 }

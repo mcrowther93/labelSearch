@@ -9,8 +9,7 @@ interface IAuthState {
 interface IAuthProps {
     style?: React.CSSProperties,
     placeholder?: string;
-    isSelected(item): void;
-    onHover(item): void
+    isSelected?:(item) => void;
     itemId: any
 }
 
@@ -31,22 +30,21 @@ export class SelectableItem extends React.Component<IAuthProps, IAuthState>{
     }
 
     onClick = () => {
-        this.props.isSelected(this.props.itemId)
+        this.props.isSelected && this.props.isSelected(this.props.itemId)
     }
+<<<<<<< HEAD
+=======
     
     onHover = () => {
         this.props.onHover(this.props.itemId)
+>>>>>>> master
 
-    }
 
     render() {
-        const {isSelected } = this.props;
         return (
             <div onClick={this.onClick} 
                 className={'selectablable-item'} 
-                onMouseOver={this.onHover} 
                 style={this.props.style}>
-                
                 {this.props.children}
             </div>
 

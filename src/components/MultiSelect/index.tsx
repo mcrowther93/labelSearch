@@ -80,7 +80,7 @@ export class MultiSelect extends React.Component<IAuthProps, IAuthState>{
                         const style: React.CSSProperties = selection.includes(item) ? this.props.selectedStyle : null;
                         return (
                             <div key={key} className={'multiselect-item'}>
-                                <SelectableItem style={{ ...this.props.itemStyle, ...style }} itemId={item} onHover={null} isSelected={this.onSelect}>
+                                <SelectableItem style={{ ...this.props.itemStyle, ...style }} itemId={item} isSelected={this.onSelect}>
                                     {item}
                                 </SelectableItem>
                             </div>
@@ -97,8 +97,8 @@ export class MultiSelect extends React.Component<IAuthProps, IAuthState>{
                     <div style={{ marginTop: "10px", display: "flex", flexWrap: 'wrap', flexDirection: "row" }} className={'multiselect-tag'}>
                         {selection.map(s =>
                             <SelectableItem style={{ width: 'fit-content', margin: "10px 5px 0 0", borderRadius: "20px", ...this.props.itemStyle, ...this.props.selectedStyle }}
-                                isSelected={this.onSelect} itemId={s}
-                                onHover={null} > <div className={'tag'}>{s} </div>
+                                isSelected={this.onSelect} itemId={s}> 
+                                <div className={'tag'}>{s} </div>
                             </SelectableItem>
                         )}
                     </div>

@@ -53,9 +53,24 @@ class ApiAction {
       return this.instance.get(`${ApiAction.baseUrl}me`)
   }
     
+  getMyPlaylist = async (url?: string) => {
+    const playlistUrl = url ? url : `${ApiAction.baseUrl}me/playlists?limit=50&next`;
+    return this.instance.get(playlistUrl);
+  }
 
   getAvailableDevices = async () => {
     return this.instance.get(`${ApiAction.baseUrl}me/player/devices`)
+  }
+
+  createPlaylist = async (userId) => {
+    return this.instance.post(`${ApiAction.baseUrl}users/${userId}/playlists`, {
+      name: 'RoundHere...'
+    });
+ 
+  }
+
+  addToPLaylist = (songURI, playlistId) => {
+    return this.instance.post(`${ApiAction.baseUrl}playlists/${playlistId}/tracks?uris=${songURI}`)
   }
 
 }

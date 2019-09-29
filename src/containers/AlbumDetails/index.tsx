@@ -25,7 +25,6 @@ class AlbumDetails extends React.Component<IAuthProps, IAuthState>{
     }
 
     componentDidMount(){
-        // get id
         const pathname = this.props.location.pathname;
         const indexOf = pathname.lastIndexOf("/")
         const id = pathname.substring(indexOf+1);

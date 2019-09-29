@@ -12,7 +12,7 @@ module.exports = {
     // activate HMR for React
 
     'webpack-dev-server/client?http://localhost:3000',
-    // bundle the client for webpack-dev-server
+    // bundle the client for webpack-dev-servers
     // and connect to the provided endpoint
 
     // 'webpack/hot/only-dev-server',

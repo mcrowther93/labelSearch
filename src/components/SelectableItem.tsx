@@ -32,12 +32,6 @@ export class SelectableItem extends React.Component<IAuthProps, IAuthState>{
     onClick = () => {
         this.props.isSelected && this.props.isSelected(this.props.itemId)
     }
-<<<<<<< HEAD
-=======
-    
-    onHover = () => {
-        this.props.onHover(this.props.itemId)
->>>>>>> master
 
 
     render() {

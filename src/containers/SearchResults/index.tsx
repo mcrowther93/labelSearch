@@ -5,6 +5,7 @@ import { SelectableItem } from '../../components/SelectableItem'
 import apiActions from './../../utilites/apiActions'
 import getQueryParams from '../../utilites/StringToObject'
 import Pagination from '../../components/Pagination'
+import {Link} from 'react-router-dom';
 
 import './style.css'
 
@@ -88,7 +89,7 @@ export default class SearchResultsContainer extends React.Component<IAuthProps, 
                                         <div className={"ablumDetails-wrapper"}>
                                             <div className={'flex-center'}>                                                
                                                 <h2 onClick={() => this.clickImage(album.id)}>Play/Pause</h2>
-                                                <h2>Details Page</h2>
+                                                <Link to={`albums/${album.id}`}> <h2> Details </h2> </Link>
                                                 </div>
 
                                         </div>

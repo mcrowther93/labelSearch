@@ -7,7 +7,8 @@ interface INowPLaying  {
     currentSong: string,
     nextSong?: INowPLaying,
     duration: number,
-    artistName: string
+    artistName: string,
+    uri: string;
 }
 
 const inititalState: IPlayer = {
@@ -36,11 +37,13 @@ const transformIntoSong = (payload): INowPLaying => {
         currentSong: currentSong.name,
         duration: currentSong.duration_ms,
         id: currentSong.id,
+        uri: currentSong.uri,
         nextSong: nextSong && {
             artistName: nextSong.artists[0].name,
             currentSong: nextSong.name,
             duration: nextSong.duration_ms,
             id: nextSong.id,
+            uri: nextSong.uri
         }
     };
 }

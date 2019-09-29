@@ -17,7 +17,7 @@ class Auth extends React.Component<IAuthProps>{
     private spotifyAuth = 'https://accounts.spotify.com/authorize?' + 
    'client_id=b26546b8389b4256b77be170b06bff52&' + 
     'redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth&' + 
-    'scope=user-read-private%20user-read-playback-state%20user-read-email%20user-modify-playback-state%20streaming%20user-read-birthdate&' + 
+    'scope=user-read-private%20user-read-playback-state%20user-read-email%20user-modify-playback-state%20streaming%20user-read-birthdate%20playlist-modify-public&' + 
     'response_type=token&' + 
     'state=123';
     

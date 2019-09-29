@@ -22,11 +22,11 @@ class SpotifyPlayer {
     }
     
     async isCurrentlyListeningTo() {
-        let state = await this.sdk.getCurrentState();
+        const state = await this.sdk.getCurrentState();
         if (state == null) {
             // Playback isn't on this device yet
         } else {
-            let {
+            const {
                 id,
                 uri: track_uri,
                 name: track_name,

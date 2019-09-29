@@ -1,11 +1,11 @@
 import { handleActions, handleAction } from 'redux-actions';
-import { IActiveUser, EDIT_LABEL, EDIT_ACTIVE_DATE, ADD_MY_PLAYLIST} from '../actions/ActiveUser'
+import { IActiveUser, EDIT_LABEL, EDIT_ACTIVE_DATE} from '../actions/ActiveUser'
 import * as _ from 'lodash'
 
 const inititalState = {
     lastedLoggedIn: null,
-    likedLabels: [],
     myPlaylist: []
+    likedLabels: []
 } as IActiveUser;
 
 export const activeUserReducer = handleActions({

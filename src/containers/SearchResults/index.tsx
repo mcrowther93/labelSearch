@@ -67,7 +67,7 @@ export default class SearchResultsContainer extends React.Component<IAuthProps, 
     renderResults = () => {
         const { results } = this.state;
 
-        const beginningItem: number = this.state.step * 15;
+        const beginningItem = this.state.step * 15;
         return (
             <Pagination itemsPerStep={15} step={this.state.step}
                 numberOfItems={results.length} next={this.nextSteps}>
@@ -79,19 +79,16 @@ export default class SearchResultsContainer extends React.Component<IAuthProps, 
                         const albumLikedCSS = this.props.favouriteAlbums.includes(album.label) && "favourite"
 
                         return (
-
                             <div key={album.id}>
 
-                                <SelectableItem
-                                    itemId={album.id}>
+                    
 
                             <div>
 
                                 <SelectableItem
                                     isSelected={null}
                                     key={album.id}
-                                    itemId={album.id}
-                                    onHover={}>
+                                    itemId={album.id}>
 
                                     <div className={'searchresult-album'}>
 
@@ -117,9 +114,9 @@ export default class SearchResultsContainer extends React.Component<IAuthProps, 
                                                     <div className={`icon ${albumLikedCSS}`}></div>
                                                 </span>
                                             </div>
-                            </div>
-                        )
-                    })}
+                        </div>
+                        </div>
+                        )})};
                 </div>
 
             </Pagination>

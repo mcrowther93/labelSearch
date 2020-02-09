@@ -21,9 +21,8 @@ export class SelectableItem extends React.Component<IAuthProps, IAuthState>{
             isHovering: false
         }
     }
-    
 
-    handleChange = (value) => {
+    handleChange = () => {
         this.setState({
             isHovering: !this.state.isHovering
         })
@@ -32,12 +31,6 @@ export class SelectableItem extends React.Component<IAuthProps, IAuthState>{
     onClick = () => {
         this.props.isSelected && this.props.isSelected(this.props.itemId)
     }
-
-    onHover = () => {
-        this.props.onHover(this.props.itemId)
-    }
-
-
 
     render() {
         return (

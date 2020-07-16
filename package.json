@@ -38,7 +38,7 @@
     "@types/react-router-dom": "^4.3.1",
     "@types/spotify-web-playback-sdk": "^0.1.4",
     "axios": "^0.18.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "react": "^16.8.2",
     "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.8.2",
